@@ -28,12 +28,14 @@ export class AiService {
   }: {
     role: Role;
     context: { first: string; second: string };
-  }): Promise<string> {
+  }): Promise<{ text: string }> {
     const functionPrompt = prompts[role];
 
     const prompt = functionPrompt(context);
 
     const result = await this.model.generateContent(prompt);
-    return result.response.text();
+    return {
+      text: result.response.text(),
+    };
   }
 }

@@ -22,7 +22,8 @@ export const prompts = {
     I have worked for three years in tech, and I am currently a Lead frontend developer at a company. Where I have woorked with 
     Android Studio, Xcode, React Native, React, Next.js. I am a full stack developer and I have done a lot of backend work with NestJs,
     Node.js, Express, MongoDB, PostgreSQL, MySQL, and Redis. I recently started working with integration of AI tools like OpenAI, Anthropic,
-    into existing products. My strength is in frontend development. Now, using the above information, generate a prompt that will be used to generate a response to the recruiter.
+    into existing products. My strength is in frontend development. Now, using the above information, generate a introduction to the recruiter with my strengths. minimum of 150 words. The recruiter will be reading the response, so no need to say "Hello, I am..."
+    also, do not use placeholders. I currently work at Bookr. skip any context you do not have.
     `,
   [ROLES.COLLEAGUE]: (context: { first: string; second: string }) => {
     // i have worked in the following places
@@ -48,22 +49,25 @@ export const prompts = {
 
     return `
      I worked with a coworker for ${context.second} years. and in that time, I assume we had a good relationship.
-     Now, I want you to generate a prompt that reurns a funny response that can apply to any coworker, based on the keywords below:
+     The coworker will be reading the response, so no need to say "Hello, I am..." also, do not use placeholders. skip any context you do not have.
+     Now, I want you to generate a response for them that is funny and can apply to any coworker, based on the keywords below:
      ${keywords}
     `;
   },
 
   [ROLES.VISITOR]: (context: { first: string; second: string }) => `
     For the show ${context.first}, tell me ${context.second} hidden facts that you think most people would have missed or fascinated about.
+         The coworker will be reading the response, so no need to say "Hello, I am..." also, do not use placeholders. skip any context you do not have.
+
     `,
 
   // for the friend, I want to tell them a piece of myself based on what they call me and where they know me from
   [ROLES.FRIEND]: (context: { first: string; second: string }) => `
-  I want to tell you a piece of myself based on what you call me and where you know me from.
-  This is what you call me: ${context.first}
-  This is where you know me from: ${context.second}
+  I want to tell the reader  a piece of myself based on what they call me and where they know me from.
+  This is what they know me as: ${context.first}, hold this as context.
+  This is where they know me from: ${context.second}, hold this as context.
 
-  Now, if they knew me from school, then generate a prompt telling them that school was fun but i was massively lazy. I would have been a great student if i had the motivation.
+  Now, if they knew me from school, then generate a funny response telling them that school was fun but i was massively lazy. I would have been a great student if i had the motivation.
   Also, those were the best years of my innocent life before adult life hit me. I probably good to them, if I was not, then they were a bad person.
 
   If they knew me in Abuja, then they probably know a version of me that is not the real me. I am a very introvert person, and I am not the kind of person that would go out and party.
@@ -83,5 +87,8 @@ export const prompts = {
   except you were very promiscuous, which i did not support (laughter).
 
   If they called me joeblaq, Joe black or any variation of that, then they know me from FUT and know a very different version of me, although I still remain the same person in the core of my being.
+
+  They are gonna be reading the response, so no need to say "Hello, I am..." also, do not use placeholders. skip any context you do not have. also make it as funny as possible. only return response for the context provided.
+  leave other narratives out. only match the descriptions about ${context.first} and ${context.second}. No introduction, just a response. as a reader would want to read.
         `,
 };

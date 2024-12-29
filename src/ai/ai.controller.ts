@@ -11,7 +11,7 @@ export class AiController {
   @Post('generate-text')
   async generateText(
     @Body() body: { role: Role; context: { first: string; second: string } },
-  ): Promise<string> {
+  ): Promise<{ text: string }> {
     return this.aiService.generateText(body);
   }
 }
